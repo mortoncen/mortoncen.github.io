@@ -1,21 +1,26 @@
-{% include base_path %}
+{% if page.title %}
+{% capture title %}{{ page.title }} | {{ site.title }}{% endcapture %}
+{% else %}
+{% capture title %}{{ site.title }}{% endcapture %}
+{% endif %}
 
-<meta charset="utf-8">
+<head>
+  <title>{{ title }}</title>
+  {% include google_analytics.html %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="{{ site.user.name }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% include seo.html %}
+  <link rel="stylesheet" href="{{ 'assets/css/main.css' | relative_url }}" media="all">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}"
+    href="{{ '/feed.xml' | relative_url }}" />
 
-<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+  <!-- favicon -->
+  <link rel="shortcut icon" href="{{ site.favicon | relative_url }}" type="image/x-icon" />
+  <link rel="icon" href="{{ site.favicon | relative_url }}" type="image/x-icon" />
 
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
-
-<meta http-equiv="cleartype" content="on">
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i" rel="stylesheet">
+</head>
