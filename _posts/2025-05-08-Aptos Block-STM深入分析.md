@@ -16,3 +16,6 @@ categories: [dev]
 与传统方案相比 —— 即从区块初始状态出发，把所有交易“尴尬地”（完全无优化地）并行预执行以生成写入估算 —— Block-STM 的做法有两个优势：
 1.	只在需要时才生成估算，而不是为每笔交易都预生成；
 2.	这些估算值通常是比区块初始状态新得多的系统状态，因此更加准确。
+
+以下是aptos-stm相关代码脑图：
+![aptos_execute_stage.png](../assets/img/aptos_execute_stage.png)
